@@ -27,7 +27,7 @@ import (
 
 func TestPHA(t *testing.T) {
 	// Load picture from file.
-	infile, err := os.Open("./testdata/pic_original.jpg")
+	infile, err := os.Open("./testdata/pic_output.png")
 	if err != nil {
 		t.Errorf("Load picture: %s.", err)
 	}
@@ -43,7 +43,7 @@ func TestPHA(t *testing.T) {
 	fmt.Println("Fingerprint:", fg)
 
 	// Load picture2 from file.
-	infile, err = os.Open("./testdata/pic_original2.jpg")
+	infile, err = os.Open("./testdata/pic_output2.jpg")
 	if err != nil {
 		t.Errorf("Load picture2: %s.", err)
 	}

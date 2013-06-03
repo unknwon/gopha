@@ -19,12 +19,13 @@ import (
 	"bytes"
 	"image"
 
-	"github.com/nfnt/resize"
+	//"github.com/nfnt/resize"
 )
 
 func PHA(m image.Image) string {
 	// Step 1: resize picture to 8*8.
-	m = resize.Resize(8, 8, m, resize.NearestNeighbor)
+	//m = resize.Resize(8, 8, m, resize.NearestNeighbor)
+	m = Resize(m, m.Bounds(), 8, 8)
 
 	// Step 2: grayscale picture.
 	gray := grayscaleImg(m)
