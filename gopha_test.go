@@ -18,7 +18,9 @@ package gopha
 import (
 	"fmt"
 	"image"
+	_ "image/gif"
 	_ "image/jpeg"
+	_ "image/png"
 	"os"
 	"testing"
 )
@@ -29,14 +31,32 @@ func TestPHA(t *testing.T) {
 	if err != nil {
 		t.Errorf("Load picture: %s.", err)
 	}
-	defer infile.Close()
 
 	// Decode picture.
 	srcImg, _, err := image.Decode(infile)
+	infile.Close()
 	if err != nil {
 		t.Errorf("Decode picture: %s.", err)
 	}
 
 	fg := PHA(srcImg)
 	fmt.Println("Fingerprint:", fg)
+
+	// Load picture2 from file.
+	infile, err = os.Open("./testdata/pic_original2.jpg")
+	if err != nil {
+		t.Errorf("Load picture2: %s.", err)
+	}
+
+	// Decode picture.
+	srcImg, _, err = image.Decode(infile)
+	infile.Close()
+	if err != nil {
+		t.Errorf("Decode picture2: %s.", err)
+	}
+
+	fg2 := PHA(srcImg)
+	fmt.Println("Fingerprint:", fg2)
+
+	fmt.Println("Diff num:", CompareDiff(fg, fg2))
 }
